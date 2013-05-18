@@ -24,6 +24,8 @@ AUTHENTICATION_BACKENDS = (
 )
 SESSION_ENGINE = 'mongoengine.django.sessions'
 
+PROJECT_PASSWORD_SALT = '[jngdng54bngdflb3q[lkk'
+
 config = configparser.ConfigParser()
 config.read('../settings.ini')
 

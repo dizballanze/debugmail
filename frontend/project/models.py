@@ -1,15 +1,12 @@
 import datetime
 from mongoengine import Document, ReferenceField, StringField, DateTimeField, URLField
 from mongoengine.django.auth import User
-import hashlib
 
 
 class Project(Document):
     user = ReferenceField(User, required=True)
     title = StringField(max_length=255, required=True)
     creation_time = DateTimeField(default=datetime.datetime.now)
-    host = StringField(max_length=255, required=True)
-    port = StringField(max_length=6, required=True)
     password = StringField()
 
 
