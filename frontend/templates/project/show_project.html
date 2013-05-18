@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block extrajs %}
+    <script type="text/coffeescript" src="{{ STATIC_URL }}coffee/show-project.coffee"></script>
+{% endblock %}
+
 {% block content %}
     <div class="offset1">
         <div class="span3 well">
@@ -24,9 +28,9 @@
                     <tr>
                         <td>{{ letter.subject }}</td><td>{{ letter.date|date:"d.m.Y H:i" }}</td>
                     </tr>
-                    <tr class="info">
+                    <tr class="info hide">
                         <td colspan="2">
-                            <strong>Link:</strong> http://debugmail.info/{% url 'show_letter' letter.id %}<br>
+                            <strong>Link:</strong> http://debugmail.info{% url 'show_letter' letter.id %}<br>
                             <strong>From:</strong> {{ letter.sender }}<br>
                             <strong>To:</strong> {{ letter.to }}<br>
                             <strong>Charset:</strong> {{ letter.charset }}<br>
