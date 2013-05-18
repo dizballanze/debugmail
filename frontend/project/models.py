@@ -12,8 +12,12 @@ class Project(Document):
 
 class Letter(Document):
     subject = StringField(max_length=255, required=True)
-    content_type = StringField(max_length=50, required=True)
-    charset = StringField(max_length=30, required=True)
+    cc = StringField()
+    bss = StringField()
+    in_reply_to = StringField()
+    priority = StringField()
+    html = StringField()
+    plain = StringField()
     content = StringField()
     sender = StringField(max_length=255, required=True)
     to = StringField(max_length=255, required=True)
