@@ -1,9 +1,8 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, Http404
-from django.shortcuts import redirect, get_object_or_404
-from mongoengine import DoesNotExist, NotUniqueError, ValidationError
-from mongoengine.django.auth import User
-from django.contrib.auth import login, logout
+from django.http import Http404
+from django.shortcuts import redirect
+from mongoengine import DoesNotExist, ValidationError
+
 from handy.decorators import render_to
 from project.models import Project
 from debugmail.settings import PROJECT_PASSWORD_SALT
