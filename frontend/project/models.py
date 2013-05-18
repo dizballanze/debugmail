@@ -22,9 +22,3 @@ class Letter(Document):
     #attachments =
     url = URLField(required=True)
     project = ReferenceField(Project)
-
-
-class User(Document):
-    email = StringField(max_length=255, required=True)
-    password = StringField(max_length=255, required=True)
-    registration_date = DateTimeField(default=datetime.datetime.now)

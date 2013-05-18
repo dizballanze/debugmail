@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p>
+        You logged as {{ user.email }}
+        <a href="{% url 'logout_view' %}">Logout</a>
+    </p>
+    <h2>Project list</h2>
+    <a href="">Add new project</a>
+    <div>
+        {% for project in projects %}
+            {% if forloop.first %}<ul>{% endif %}
+                <li>{{ project.title }}</li>
+            {% if forloop.last %}</ul>{% endif %}
+        {% empty %}
+            No projects
+        {% endfor %}
+    </div>
+{% endblock %}
