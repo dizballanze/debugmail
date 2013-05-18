@@ -48,7 +48,7 @@ def project_process(request, project, is_update):
                 m.update(PROJECT_PASSWORD_SALT + str(project.id))
                 project.password = str(m.hexdigest())
                 project.save()
-            return redirect('edit_project', project_id=str(project.id))
+            return redirect('project_list', project_id=str(project.id))
         except ValidationError, e:
             return {
                 'error': str(e),

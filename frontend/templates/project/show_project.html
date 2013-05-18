@@ -1,15 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>project {{ project.title }}</h2>
-    <div class="span3">
-        <a href="{% url 'edit_project' project.id %}">Edit project</a> |
-        <a href="{% url 'remove_project' project.id %}">Remove project</a>
-        <br />
-        password: {{ project.password }}
+    <div class="offset1">
+        <h2>project {{ project.title }}</h2>
+        <div class="span4 well">
+            <a href="{% url 'edit_project' project.id %}">Edit project</a> |
+            <a href="{% url 'remove_project' project.id %}">Remove project</a>
+            <br />
+            password: {{ project.password }}
+        </div>
+        <div class="span9 well">
+            {% for letter in project.letter_set.all %}
+                {% if forloop.first %}<ul>{% endif %}
+                    <li>{{ letter.subject }}</li>
+                {% if forloop.last %}</ul>{% endif %}
+            {% empty %}
+                No letters
+            {% endfor %}
+        </div>
     </div>
-    {% for letter in project__letters_set %}
-    {% empty %}
-        No letters
-    {% endfor %}
 {% endblock %}
