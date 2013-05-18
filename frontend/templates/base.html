@@ -5,6 +5,7 @@
     <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="{{ STATIC_URL }}css/app.css" rel="stylesheet" media="screen">
     {% compress js %}
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
         {% block extrajs %}{% endblock %}
     {% endcompress %}
 </head>
