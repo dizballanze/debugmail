@@ -10,7 +10,7 @@
                 <li><strong>Charset:</strong> {{ letter.charset }}</li>
                 <li><strong>From:</strong> {{ letter.sender }}</li>
                 <li><strong>To:</strong> {{ letter.sender }}</li>
-                <li><strong>Date:</strong> {{ letter.date }}</li>
+                <li><strong>Date:</strong> {{ letter.date|date:"d.m.Y H:i" }}</li>
             </ul>
         </div>
         <div class="span6 well">
