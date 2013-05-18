@@ -5,17 +5,19 @@
     {% if error %}
         <p>{{ error }}</p>
     {% endif %}
-    <form action="{% url 'login_view' %}" method="POST">
-        {% csrf_token %}
-        <div>
-            <label for="input-email">Email</label>
-            <input type="text" id="input-email" name="email" value="{{ email }}">
-        </div>
-        <div>
-            <label for="input-password">Password</label>
-            <input type="password" id="input-password" name="password">
-        </div>
-        <div><input type="submit" value="Login"></div>
-    </form>
-    <a href="{% url 'user_register' %}">Register</a>
+    <div class="hero-unit">
+        <form action="{% url 'login_view' %}" method="POST">
+            {% csrf_token %}
+            <div>
+                <label for="input-email">Email</label>
+                <input type="text" id="input-email" name="email" value="{{ email }}">
+            </div>
+            <div>
+                <label for="input-password">Password</label>
+                <input type="password" id="input-password" name="password">
+            </div>
+            <div><input type="submit" value="Login"></div>
+        </form>
+        <a href="{% url 'user_register' %}">Register</a>
+    </div>
 {% endblock %}

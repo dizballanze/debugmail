@@ -6,7 +6,7 @@
         <a href="{% url 'logout_view' %}">Logout</a>
     </p>
     <h2>Project list</h2>
-    <a href="{% url 'add_project' %}">Add new project</a>
+    <a class="btn" href="{% url 'add_project' %}">Add new project</a>
     <div>
         {% for project in projects %}
             {% if forloop.first %}<ul>{% endif %}

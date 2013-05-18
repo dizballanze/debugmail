@@ -19,5 +19,4 @@ class Letter(Document):
     to = StringField(max_length=255, required=True)
     date = DateTimeField(required=True)
     #attachments =
-    url = URLField(required=True)
     project = ReferenceField(Project)
