@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>project {{ project.title }}</h2>
+    <p>
+        <a href="{% url 'edit_project' project.id %}">Edit project</a> |
+        <a href="{% url 'remove_project' project.id %}">Remove project</a>
+    </p>
+    {% for letter in project__letters_set %}
+    {% empty %}
+        No letters
+    {% endfor %}
+{% endblock %}

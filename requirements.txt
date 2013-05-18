@@ -1,0 +1,8 @@
+Django==1.5.1
+argparse==1.2.1
+configparser==3.3.0r2
+handy==0.1.6
+mongoengine==0.8.0RC4
+pymongo==2.5.1
+pytz==2012j
+wsgiref==0.1.2

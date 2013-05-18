@@ -10,7 +10,7 @@
     <div>
         {% for project in projects %}
             {% if forloop.first %}<ul>{% endif %}
-                <li>{{ project.title }}</li>
+                <li><a href="{% url 'show_project' project.id %}">{{ project.title }}</a></li>
             {% if forloop.last %}</ul>{% endif %}
         {% empty %}
             No projects
