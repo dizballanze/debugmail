@@ -25,10 +25,10 @@
                     <table class="table">
                     <thead><tr><th>Subject</th><th>Date</th></tr></thead>
                 {% endif %}
-                    <tr class="open-row">
+                    <tr class="open-row" data-letter-id="{{ letter.id }}">
                         <td>{{ letter.subject }}</td><td>{{ letter.date|date:"d.m.Y H:i" }}</td>
                     </tr>
-                    <tr class="info hide">
+                    <tr class="info hide" id="{{ letter }}">
                         <td colspan="2">
                             <strong>Link:</strong> http://debugmail.info{% url 'show_letter' letter.id %}<br>
                             <strong>From:</strong> {{ letter.sender }}<br>
