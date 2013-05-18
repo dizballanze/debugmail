@@ -4,7 +4,9 @@
   "description": "Testing SMTP server",
   "main": "bin/app",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node_modules/.bin/forever start bin/app",
+    "stop": "node_modules/.bin/forever stopall"
   },
   "repository": {
     "type": "git",
@@ -25,7 +27,8 @@
     "simplesmtp": "~0.2.7",
     "mongoose": "~3.6.11",
     "async": "~0.2.8",
-    "mailparser": "~0.3.6"
+    "mailparser": "~0.3.6",
+    "forever": "~0.10.8"
   },
   "devDependencies": {
     "mocha": "~1.9.0"
