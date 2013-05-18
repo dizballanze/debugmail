@@ -17,7 +17,7 @@ smtp.login('yuri@wbtech.pro', '40d72d5c19f7f542bfba52fe239e4d05')
 from_addr = "Yuri Shikanov <dizballanze@gmail.com>"
 to_addr = "lion.programmer@gmail.com"
 
-subj = "hello"
+subj = "Hack The Planet"
 date = datetime.datetime.now().strftime( "%d/%m/%Y %H:%M" )
 
 message_text = "Hello\nThis is a mail from your server\n\nBye\n"
