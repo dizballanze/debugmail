@@ -1,4 +1,4 @@
-ini = require './smtp/node_modules/iniparser'
+ini = require './smtpd/node_modules/iniparser'
 settings = ini.parseSync "#{__dirname}/settings.ini"
 
 module.exports = exports = settings
