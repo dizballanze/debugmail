@@ -7,6 +7,7 @@ from django.contrib.auth import login, logout
 from handy.decorators import render_to
 from project.models import Project
 from debugmail.settings import PROJECT_PASSWORD_SALT
+
 import hashlib
 
 
