@@ -2,6 +2,7 @@ smtp = require "simplesmtp"
 
 
 exports.run = (settings)->
+  console.log settings
   server = smtp.createServer 
     name: 'localhost'
     debug: true
