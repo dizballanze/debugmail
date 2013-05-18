@@ -3,3 +3,5 @@ venv/
 settings.ini
 *.pyc
 static/CACHE/
+static/coffee/*.js
+static/coffee/*.map
