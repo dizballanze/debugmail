@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}{% load humanize %}
 
 {% block extrajs %}
     <script type="text/coffeescript" src="/static/coffee/show-project.coffee"></script>
@@ -26,7 +26,7 @@
                     <thead><tr><th>Subject</th><th>Date</th></tr></thead>
                 {% endif %}
                     <tr class="open-row" data-letter-id="{{ letter.id }}">
-                        <td>{{ letter.subject }}</td><td>{{ letter.date|date:"d.m.Y H:i" }}</td>
+                        <td>{{ letter.subject }}</td><td>{{ letter.date|naturaltime }}</td>
                     </tr>
                     <tr class="info hide" id="{{ letter.id }}">
                         <td colspan="2">
