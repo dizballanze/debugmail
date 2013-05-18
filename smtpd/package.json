@@ -1,5 +1,5 @@
 {
-  "name": "smtp",
+  "name": "smtpd",
   "version": "0.0.1",
   "description": "Testing SMTP server",
   "main": "bin/app",
@@ -18,11 +18,11 @@
   "author": "Yuri Shikanov <dizballanze@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "smtp-protocol": "~0.3.0",
     "coffee-script": "~1.6.2",
     "node-ini": "~1.0.0",
     "lodash": "~1.2.1",
-    "iniparser": "~1.0.5"
+    "iniparser": "~1.0.5",
+    "simplesmtp": "~0.2.7"
   },
   "devDependencies": {
     "mocha": "~1.9.0"
