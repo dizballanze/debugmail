@@ -7,12 +7,12 @@
             <a href="{% url 'edit_project' project.id %}">Edit project</a> |
             <a href="{% url 'remove_project' project.id %}">Remove project</a>
             <br />
-            password: {{ project.password }}
+            <strong>password</strong>: {{ project.password }}
         </div>
         <div class="span7 well">
             {% for letter in letters %}
                 {% if forloop.first %}<ul>{% endif %}
-                    <li>{{ letter.subject }}</li>
+                    <li><a href="{% url 'show_letter' letter.id %}">{{ letter.subject }}</a></li>
                 {% if forloop.last %}</ul>{% endif %}
             {% empty %}
                 No letters

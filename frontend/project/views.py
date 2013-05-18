@@ -14,7 +14,7 @@ import hashlib
 @login_required
 def project_list(request):
     return {
-        'projects': Project.objects.filter(user=request.user),
+        'projects': Project.objects.filter(user=request.user).order_by('id'),
         'user': request.user
     }
 
@@ -76,7 +76,7 @@ def show_project(request, project_id):
 
     return {
         'project': project,
-        'letters': Letter.objects.filter(project=project)
+        'letters': Letter.objects.filter(project=project).order_by('id')
     }
 
 
@@ -90,3 +90,17 @@ def remove_project(request, project_id):
         return Http404()
     project.delete()
     return redirect('project_list')
+
+
+@render_to('project/show-letter.html')
+@login_required()
+def show_letter(request, letter_id):
+    try:
+        letter = Letter.objects.get(id=letter_id)
+    except DoesNotExist:
+        return Http404()
+    if letter.project.user != request.user:
+        return Http404()
+    return {
+        'letter': letter
+    }
