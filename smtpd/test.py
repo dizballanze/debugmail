@@ -12,7 +12,7 @@ smtp.ehlo()
 smtp.starttls()
 smtp.ehlo()
 
-smtp.login('USERNAME@DOMAIN', 'PASSWORD')
+smtp.login('yuri@wbtech.pro', '123123')
 
 from_addr = "Yuri Shikanov <dizballanze@gmail.com>"
 to_addr = "lion.programmer@gmail.com"
