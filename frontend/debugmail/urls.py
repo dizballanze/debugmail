@@ -13,4 +13,5 @@ urlpatterns = patterns('',
     url(r'^add_project/$', 'project.views.add_project', name='add_project'),
     url(r'^show_project/(?P<project_id>\w+)/$', 'project.views.show_project', name='show_project'),
     url(r'^remove_project/(?P<project_id>\w+)/$', 'project.views.remove_project', name='remove_project'),
+    url(r'^(?P<letter_id>\w+)/$', 'project.views.show_letter', name='show_letter'),
 )
