@@ -1,18 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>{% if is_update %}Edit{% endif %}{% if not is_update %}Add new{% endif %} project</h2>
-    {% if error %}
-        <p>{{ error }}</p>
-    {% endif %}
-    <form action="{% if is_update %}{% url 'edit_project' project.id  %}{% endif %}{% if not is_update %}{% url 'add_project'  %}{% endif %}" method="POST">
-        {% csrf_token %}
-        <div>
-            <label for="project-title">Title</label>
-            <input id="project-title" name="title" type="text" value="{{ title }}">
-        </div>
-        <div>
-            <input type="submit">
-        </div>
-    </form>
+    <div class="offset1 well span3">
+        <h2>{% if is_update %}Edit{% endif %}{% if not is_update %}Add new{% endif %} project</h2>
+        {% if error %}
+            <p>{{ error }}</p>
+        {% endif %}
+        <form action="{% if is_update %}{% url 'edit_project' project.id  %}{% endif %}{% if not is_update %}{% url 'add_project'  %}{% endif %}" method="POST">
+            {% csrf_token %}
+            <div>
+                <label for="project-title">Title</label>
+                <input id="project-title" name="title" type="text" value="{{ title }}">
+            </div>
+            <div>
+                <input type="submit" value="Save" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
 {% endblock %}
