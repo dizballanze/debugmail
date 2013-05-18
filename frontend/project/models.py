@@ -14,7 +14,6 @@ class Letter(Document):
     subject = StringField(max_length=255, required=True)
     cc = StringField()
     bss = StringField()
-    in_reply_to = StringField()
     priority = StringField()
     html = StringField()
     plain = StringField()
