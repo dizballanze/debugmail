@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="offset1 well">
+    <div class="offset1">
         <h2>Show letter</h2>
         <div class="span4 well">
             <ul>
-                <li>Subject: {{ letter.subject }}</li>
-                <li>Content-type: {{ letter.content_type }}</li>
-                <li>Charset: {{ letter.charset }}</li>
-                <li>From: {{ letter.sender }}</li>
-                <li>To: {{ letter.sender }}</li>
-                <li>Date: {{ letter.date }}</li>
+                <li><strong>Subject:</strong> {{ letter.subject }}</li>
+                <li><strong>Content-type:</strong> {{ letter.content_type }}</li>
+                <li><strong>Charset:</strong> {{ letter.charset }}</li>
+                <li><strong>From:</strong> {{ letter.sender }}</li>
+                <li><strong>To:</strong> {{ letter.sender }}</li>
+                <li><strong>Date:</strong> {{ letter.date }}</li>
             </ul>
         </div>
-        <div class="span5 well">
+        <div class="span6 well">
             {{ letter.content }}
         </div>
     </div>
