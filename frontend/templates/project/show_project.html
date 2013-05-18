@@ -2,12 +2,18 @@
 
 {% block content %}
     <div class="offset1">
-        <h2>project {{ project.title }}</h2>
-        <div class="span4 well">
-            <a href="{% url 'edit_project' project.id %}">Edit project</a> |
-            <a href="{% url 'remove_project' project.id %}">Remove project</a>
-            <br />
-            <strong>password</strong>: {{ project.password }}
+        <div class="span3 well">
+            <strong>Project: {{ project.title }}</strong><br>
+            <hr>
+
+            <strong>Host:</strong><br>
+            <input type="text" value="debugmail.info" disabled><br>
+
+            <strong>Port:</strong><br>
+            <input type="text" value="9025" disabled><br>
+
+            <strong>Password:</strong><br> 
+            <textarea disabled>{{ project.password }}</textarea><br>
         </div>
         <div class="span7 well">
             {% for letter in letters %}

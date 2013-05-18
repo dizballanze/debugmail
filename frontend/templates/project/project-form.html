@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="offset1 well span3">
+    <div class="offset4 well span4">
         <h2>{% if is_update %}Edit{% endif %}{% if not is_update %}Add new{% endif %} project</h2>
         {% if error %}
             <p class="text-error">{{ error }}</p>
@@ -10,7 +10,7 @@
             {% csrf_token %}
             <div>
                 <label for="project-title">Title</label>
-                <input id="project-title" name="title" type="text" value="{{ title }}">
+                <input id="project-title" class="input-xlarge" name="title" type="text" value="{{ title }}">
             </div>
             <div>
                 <input type="submit" value="Save" class="btn btn-primary">

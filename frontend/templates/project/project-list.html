@@ -1,20 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="offset1">
-    <h2>Project list</h2>
-    <div class="span4 well">
-        You logged as {{ user.email }}
-        <br />
-        <a class="btn" href="{% url 'logout_view' %}">Logout</a>
-        <br />
-        <a class="btn" href="{% url 'add_project' %}">Add new project</a>
-    </div>
-    <div class="span7 well">
+    <div class="offset2">
+    <div class="span8 well">
+        <h2>Projects list</h2>
         {% for project in projects %}
-            {% if forloop.first %}<ul>{% endif %}
-                <li><a href="{% url 'show_project' project.id %}">{{ project.title }}</a></li>
-            {% if forloop.last %}</ul>{% endif %}
+            {% if forloop.first %}<table class="table"><thead><tr><th>Name</th><th>Edit</th><th>Remove</th></tr></thead>{% endif %}
+                <tr>
+                    <td><a href="{% url 'show_project' project.id %}">{{ project.title }}</a></td>
+                    <td><a href="{% url 'edit_project' project.id %}">edit</a></td>
+                    <td><a href="{% url 'remove_project' project.id %}">remove</a></td>
+                </tr>
+            {% if forloop.last %}</table>{% endif %}
         {% empty %}
             No projects
         {% endfor %}
