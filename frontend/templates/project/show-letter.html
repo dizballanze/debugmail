@@ -6,15 +6,25 @@
         <div class="span4 well">
             <table class="table">
                 <tr><td><strong>Subject:</strong></td> <td>{{ letter.subject }}</td></tr>
-                <tr><td><strong>Charset:</strong></td> <td>{{ letter.charset }}</td></tr>
-                <tr><td><strong>Content-type:</strong></td> <td>{{ letter.content_type }}</td></tr>
                 <tr><td><strong>From:</strong></td> <td>{{ letter.sender }}</td></tr>
                 <tr><td><strong>To:</strong></td> <td>{{ letter.sender }}</td></tr>
                 <tr><td><strong>Date:</strong></td> <td>{{ letter.date|date:"d.m.Y H:i" }}</td></tr>
+                <tr><td><strong>CC:</strong></td> <td>{{ letter.cc|default:"-" }}</td></tr>
+                <tr><td><strong>BSS:</strong></td> <td>{{ letter.bss|default:"-" }}</td></tr>
+                <tr><td><strong>In reply to:</strong></td> <td>{{ letter.in_reply_to|default:"-" }}</td></tr>
+                <tr><td><strong>Plain:</strong></td> <td>{{ letter.plain|default:"-" }}</td></tr>
             </table>
         </div>
         <div class="span6 well">
-            {{ letter.content }}
+            <strong>Content:</strong>
+            <p>
+                {{ letter.content|default:"-" }}
+            </p>
+
+            <strong>Html:</strong>
+            <p>
+                {{ letter.html|default:"-" }}
+            </p>
         </div>
     </div>
 {% endblock %}
