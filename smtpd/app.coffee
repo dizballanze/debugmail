@@ -33,6 +33,7 @@ exports.run = (settings)->
         sender: headers.from
         to: headers.to
         content: mail.text
+        project: req.project._id
       letter.save()
 
 
