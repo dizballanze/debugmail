@@ -1,7 +1,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <h2>Add new project</h2>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
     <form action="{% url 'add_project' %}" method="POST">
-        
+        {% csrf_token %}
+        <div>
+            <label for="project-title">Title</label>
+            <input id="project-title" type="text" value="{{ title }}">
+        </div>
+        <div>
+            <label for="project-host">Host</label>
+            <input id="project-host" type="text" value="{{ host }}">
+        </div>
+        <div>
+            <label for="project-port">Port</label>
+            <input id="project-port" type="text" value="{{ port }}">
+        </div>
+        <div>
+            <input type="submit">
+        </div>
     </form>
 {% endblock %}
