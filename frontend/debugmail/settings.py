@@ -1,6 +1,8 @@
 # Django settings for debugmail project.
 from mongoengine import connect
 import configparser
+import os
+from os.path import join
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -23,6 +25,8 @@ config.read('../settings.ini')
 connect(config['mongodb']['dbname'])
 
 EMAIL_HOST = 'smtp.gmail.com'
+
+PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -114,6 +118,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    join(PROJECT_PATH, '..', 'templates'),
 )
 
 INSTALLED_APPS = (
