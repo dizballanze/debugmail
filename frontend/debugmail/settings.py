@@ -13,6 +13,9 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+LOGIN_REDIRECT_URL = ''
+LOGIN_URL = ''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.dummy',

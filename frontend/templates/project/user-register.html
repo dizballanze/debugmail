@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="span4 offset6">
+    <div class="span3 offset4">
         <div class="well">
         <h2>Register new user</h2>
         {% if error %}
@@ -17,7 +17,7 @@
                     <label for="input-password">Password</label>
                     <input type="password" id="input-password" name="password">
                 </div>
-                <div><input type="submit" value="Register"></div>
+                <div><input class="btn btn-primary" type="submit" value="Register"></div>
             </form>
         </div>
     </div>
