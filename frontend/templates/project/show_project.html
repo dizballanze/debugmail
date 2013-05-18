@@ -17,13 +17,18 @@
         </div>
         <div class="span7 well">
             {% for letter in letters %}
-                {% if forloop.first %}<table class="table">{% endif %}
+                {% if forloop.first %}
+                    <table class="table">
+                    <thead><tr><td>Subject</td><td>Date</td></tr></thead>
+                {% endif %}
                     <tr>
                         <td>{{ letter.subject }}</td><td>{{ letter.date|date:"d.m.Y H:i" }}</td>
                     </tr>
                     <tr>
-                        Link: {% url 'show_letter' letter.id %}<br>
-                        {{ letter.subject }}
+                        <td colspan="2">
+                            Link: {% url 'show_letter' letter.id %}<br>
+                            {{ letter.subject }}
+                        </td>
                     </tr>
                 {% if forloop.last %}</table>{% endif %}
             {% empty %}
