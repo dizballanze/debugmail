@@ -1,4 +1,4 @@
 $ ->
   $('.open-row').click ->
-    console.log @.next()
+    console.log @
     @.next().toggleClass 'hide'
