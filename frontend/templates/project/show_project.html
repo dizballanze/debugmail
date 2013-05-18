@@ -33,8 +33,7 @@
                             <strong>Link:</strong> http://debugmail.info{% url 'show_letter' letter.id %}<br>
                             <strong>From:</strong> {{ letter.sender }}<br>
                             <strong>To:</strong> {{ letter.to }}<br>
-                            <strong>CC:</strong> {{ letter.cc|default:"-" }}<br>
-                            <strong>BSS:</strong> {{ letter.bss|default:"-" }}<br>
+                            <strong>Headers:</strong> {{ letter.headers|default:"-" }}<br>
                             <strong>Plain:</strong> {{ letter.plain|default:"-" }}<br>
                             <strong>Content:</strong>
                             <p>
