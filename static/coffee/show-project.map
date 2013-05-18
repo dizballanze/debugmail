@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "show-project.js",
+  "sourceRoot": "",
+  "sources": [
+    "show-project.coffee"
+  ],
+  "names": [],
+  "mappings": ";;AAAA;CAAA;CAAA,CAAA,CAAA,GAAA,CAAO;CAAP"
+}
