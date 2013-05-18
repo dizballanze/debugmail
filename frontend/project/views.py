@@ -87,4 +87,23 @@ def project_list(request):
 @render_to('project/project-form.html')
 @login_required
 def add_project(request):
-    return {}
+    if request.method == 'POST':
+        project_title = request.POST.get('title', None)
+        project_host = request.POST.get('host', None)
+        project_port = request.POST.get('port', None)
+        try:
+            project = Project()
+            project.title = project_title
+            project.host = project_host
+            project.port = project_port
+            project.save()
+            #raise Exception(project.id)
+        except ValidationError, e:
+            return {
+                'error': str(e),
+                'title': project_title,
+                'host': project_host,
+                'port': project_port
+            }
+    else:
+        return {}
