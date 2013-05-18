@@ -57,6 +57,7 @@ exports.run = (settings)->
             callback null, user
 
       (user, callback)->
+        console.log {user: user._id, password: password}
         Project.findOne {user: user._id, password: password}, (err, project)->
           if err
             callback err
