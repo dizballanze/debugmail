@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 from mongoengine import DoesNotExist, ValidationError
 
 from handy.decorators import render_to
-from project.models import Project
+from project.models import Project, Letter
 from debugmail.settings import PROJECT_PASSWORD_SALT
 
 import hashlib
@@ -73,8 +73,10 @@ def show_project(request, project_id):
         return Http404()
     if project.user != request.user:
         return Http404()
+
     return {
-        'project': project
+        'project': project,
+        'letters': Letter.objects.filter(project=project)
     }
 
 

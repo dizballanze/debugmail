@@ -10,7 +10,7 @@
             password: {{ project.password }}
         </div>
         <div class="span9 well">
-            {% for letter in project.letter_set.all %}
+            {% for letter in letters %}
                 {% if forloop.first %}<ul>{% endif %}
                     <li>{{ letter.subject }}</li>
                 {% if forloop.last %}</ul>{% endif %}
