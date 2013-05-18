@@ -1,4 +1,6 @@
 # Django settings for debugmail project.
+from mongoengine import connect
+import configparser
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -15,15 +17,10 @@ DATABASES = {
     }
 }
 
-import configparser
 config = configparser.ConfigParser()
 config.read('../settings.ini')
 
-MONGO_DB = {
-        'host': config['mongodb']['host'],
-        'port': config['mongodb']['port'],
-        'db': config['mongodb']['db'],
-}
+connect(config['mongodb']['dbname'])
 
 EMAIL_HOST = 'smtp.gmail.com'
 
