@@ -1,3 +1,4 @@
 venv/
 .idea/
 settings.ini
+*.pyc

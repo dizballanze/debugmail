@@ -1,4 +1,8 @@
 # Django settings for debugmail project.
+from mongoengine import connect
+import configparser
+import os
+from os.path import join
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -15,17 +19,19 @@ DATABASES = {
     }
 }
 
-import configparser
+AUTHENTICATION_BACKENDS = (
+    'mongoengine.django.auth.MongoEngineBackend',
+)
+SESSION_ENGINE = 'mongoengine.django.sessions'
+
 config = configparser.ConfigParser()
 config.read('../settings.ini')
 
-MONGO_DB = {
-        'host': config['mongodb']['host'],
-        'port': config['mongodb']['port'],
-        'db': config['mongodb']['db'],
-}
+connect(config['mongodb']['dbname'])
 
 EMAIL_HOST = 'smtp.gmail.com'
+
+PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -98,6 +104,10 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+)
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -117,6 +127,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    join(PROJECT_PATH, '..', 'templates'),
 )
 
 INSTALLED_APPS = (
@@ -126,10 +137,6 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
 )
 
 # A sample logging configuration. The only tangible logging
