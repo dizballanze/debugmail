@@ -2,3 +2,4 @@ venv/
 .idea/
 settings.ini
 *.pyc
+static/CACHE/
