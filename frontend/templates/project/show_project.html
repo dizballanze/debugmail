@@ -19,18 +19,18 @@
             {% for letter in letters %}
                 {% if forloop.first %}
                     <table class="table">
-                    <thead><th><td>Subject</td><td>Date</td></th></thead>
+                    <thead><tr><th>Subject</th><th>Date</th></tr></thead>
                 {% endif %}
                     <tr>
                         <td>{{ letter.subject }}</td><td>{{ letter.date|date:"d.m.Y H:i" }}</td>
                     </tr>
                     <tr class="info">
                         <td colspan="2">
-                            Link: {% url 'show_letter' letter.id %}<br>
-                            From: {{ letter.sender }}<br>
-                            To: {{ letter.to }}<br>
-                            Charset: {{ letter.charset }}<br>
-                            Content-type: {{ letter.content_type }}<br>
+                            <strong>Link:</strong> http://debugmail.info/{% url 'show_letter' letter.id %}<br>
+                            <strong>From:</strong> {{ letter.sender }}<br>
+                            <strong>To:</strong> {{ letter.to }}<br>
+                            <strong>Charset:</strong> {{ letter.charset }}<br>
+                            <strong>Content-type:</strong> {{ letter.content_type }}<br>
                             <p>
                                 {{ letter.content }}
                             </p>
