@@ -1,5 +1,5 @@
 import datetime
-from mongoengine import Document, ReferenceField, StringField, DateTimeField, URLField
+from mongoengine import Document, ReferenceField, StringField, DateTimeField, CASCADE
 from mongoengine.django.auth import User
 
 
@@ -19,4 +19,4 @@ class Letter(Document):
     to = StringField(max_length=255, required=True)
     date = DateTimeField(required=True)
     #attachments =
-    project = ReferenceField(Project)
+    project = ReferenceField(Project, reverse_delete_rule=CASCADE)
