@@ -5,7 +5,7 @@
         <div class="well">
         <h2>Register new user</h2>
         {% if error %}
-            <p>{{ error }}</p>
+            <p class="text-error">{{ error }}</p>
         {% endif %}
             <form action="{% url 'user_register' %}" method="POST">
                 {% csrf_token %}

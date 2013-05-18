@@ -5,7 +5,7 @@
         <div class="well">
             <h2>Enter to matrix</h2>
             {% if error %}
-                <p>{{ error }}</p>
+                <p class="text-error">{{ error }}</p>
             {% endif %}
             <form action="{% url 'login_view' %}" method="POST">
                 {% csrf_token %}
