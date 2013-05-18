@@ -28,7 +28,7 @@
                     <tr class="open-row" data-letter-id="{{ letter.id }}">
                         <td>{{ letter.subject }}</td><td>{{ letter.date|date:"d.m.Y H:i" }}</td>
                     </tr>
-                    <tr class="info hide" id="{{ letter }}">
+                    <tr class="info hide" id="{{ letter.id }}">
                         <td colspan="2">
                             <strong>Link:</strong> http://debugmail.info{% url 'show_letter' letter.id %}<br>
                             <strong>From:</strong> {{ letter.sender }}<br>
