@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <p>
-        You logged as {{ user.email }}
-        <a href="{% url 'logout_view' %}">Logout</a>
-    </p>
+    <div class="offset1">
     <h2>Project list</h2>
-    <a class="btn" href="{% url 'add_project' %}">Add new project</a>
-    <div>
+    <div class="span4 well">
+        You logged as {{ user.email }}
+        <br />
+        <a class="btn" href="{% url 'logout_view' %}">Logout</a>
+        <br />
+        <a class="btn" href="{% url 'add_project' %}">Add new project</a>
+    </div>
+    <div class="span7 well">
         {% for project in projects %}
             {% if forloop.first %}<ul>{% endif %}
                 <li><a href="{% url 'show_project' project.id %}">{{ project.title }}</a></li>
@@ -15,5 +18,6 @@
         {% empty %}
             No projects
         {% endfor %}
+    </div>
     </div>
 {% endblock %}
