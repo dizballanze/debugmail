@@ -42,11 +42,9 @@
                                     <strong>From:</strong> {{ letter.sender }}<br>
                                     <strong>To:</strong> {{ letter.to }}<br>
 
-                                    {% for key,value in headers %}
-                                        <strong>{{ key }}:</strong>{{ value }}{{ value }}<br>
+                                    {% for key,value in letter.headers %}
+                                        <strong>{{ key }}:</strong>{{ value }}<br>
                                     {% endfor %}
-
-                                    {{ letter.headers|default:"-" }}<br>
                                 </div>
                                 <div class="tab-pane fade" id="content-{{ letter.id }}">
                                     {{ letter.content|default:"-"|linebreaks }}
