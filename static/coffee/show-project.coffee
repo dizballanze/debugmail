@@ -19,8 +19,11 @@ $ ->
 
   $(document).on 'click', 'a.get-short-link', ->
     url = $(this).attr 'href'
-    $.get ->
-      'http://qps.ru/api?url=' + url + '&format=text'
-      (data) ->
-        console.log data
+    $.ajax ->
+      url: 'http://qps.ru/api?url=' + url + '&format=text'
+      settings:
+        crossDomain: true
+        type: 'GET'
+        success: (data) ->
+          console.log data
     false
