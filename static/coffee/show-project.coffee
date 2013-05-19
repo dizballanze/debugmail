@@ -51,7 +51,7 @@ $ ->
     tr.filter(':first').show 1000
 
   $(document).on 'click', 'tr.open-row', ->
-    $('#' + $(this).attr 'data-letter-id').toggleClass 'hide'
+    $('#' + $(this).attr 'data-letter-id').slideToggle 'slow'
 
   $('#load-more').click ->
     project_id = $(this).attr('data-project-id')
@@ -73,10 +73,14 @@ $ ->
 
     $.ajax(
       url: "http://qps.ru/api?url=#{url}&format=text"
-      #dataType: 'jsonp'
       crossDomain: true
       type: 'GET'
       success: (data) ->
         $("input[value='#{url}']").val(data)
     )
     false
+
+  $('#search-input').keyup ->
+    query = $(this).val()
+    $('table tr.info').addClass 'hide'
+    $("table tr.info[data-letter-subject*='#{query}']").removeClass 'hide'
