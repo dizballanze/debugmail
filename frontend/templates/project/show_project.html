@@ -16,13 +16,16 @@
             <strong>Project: {{ project.title }}</strong><br>
             <hr>
 
+            <strong>Login:</strong><br>
+            <input type="text" value="{{ user.email }}" disabled><br>
+
             <strong>Host:</strong><br>
             <input type="text" value="debugmail.info" disabled><br>
 
             <strong>Port:</strong><br>
             <input type="text" value="9025" disabled><br>
 
-            <strong>Password:</strong><br> 
+            <strong>Password:</strong><br>
             <textarea disabled>{{ project.password }}</textarea><br>
         </div>
         <div class="span7 well">

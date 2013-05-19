@@ -8,9 +8,6 @@ from mongoengine.django.auth import User
 
 @render_to('project/user-login.html')
 def login_view(request):
-    """
-        @TODO: validate email
-    """
     if request.user.is_authenticated():
         return redirect('project_list')
     if request.method == 'POST':
