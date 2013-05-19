@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block title %}{% if is_update %}Edit{% endif %}{% if not is_update %}Add new{% endif %} project{% endblock %}
 
 {% block content %}
     <div class="offset4 well span4">

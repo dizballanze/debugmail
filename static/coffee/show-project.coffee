@@ -30,7 +30,6 @@ $ ->
 
     $.ajax(
       url: "http://qps.ru/api?url=#{url}&format=text"
-      #dataType: 'jsonp'
       crossDomain: true
       type: 'GET'
       success: (data) ->
