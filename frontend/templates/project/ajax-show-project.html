@@ -12,7 +12,8 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active in" id="info-{{ letter.id }}">
-                    <strong>Link:</strong> <input class="input-xxlarge" type="text" value="http://debugmail.info{% url 'show_letter' letter.id %}" disabled><br>
+                    <strong>Link:</strong> <input class="input-xxlarge" type="text" value="http://debugmail.info{% url 'show_letter' letter.id %}" disabled>
+                    <a class="get-short-link" href="http://debugmail.info{% url 'show_letter' letter.id %}">Short link</a><br>
                     <strong>From:</strong> {{ letter.sender }}<br>
                     <strong>To:</strong> {{ letter.to }}<br>
 
