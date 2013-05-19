@@ -51,7 +51,7 @@ $ ->
     tr.filter(':first').show 1000
 
   $(document).on 'click', 'tr.open-row', ->
-    $('#' + $(this).attr 'data-letter-id').toggleClass 'hide'
+    $('#' + $(this).attr 'data-letter-id').toggleClass 'hide', 1000
 
   $('#load-more').click ->
     project_id = $(this).attr('data-project-id')
