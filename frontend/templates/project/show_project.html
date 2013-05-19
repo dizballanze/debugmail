@@ -23,7 +23,7 @@
             {% for letter in letters %}
                 {% if forloop.first %}
                     <table class="table">
-                    <thead><tr><th>Subject</th><th>Date</th></tr></thead>
+                    <thead><tr><th colspan="2">Search: <input type="text" id="search"></th></tr></thead>
                 {% endif %}
                     <tr class="open-row" data-letter-id="{{ letter.id }}">
                         <td>{{ letter.subject }}</td><td>{{ letter.date|naturaltime }}</td>
