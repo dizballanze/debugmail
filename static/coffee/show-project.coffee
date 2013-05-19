@@ -1,4 +1,9 @@
 $ ->
+  socket = io.connect location.hostname + ':' + port + "/?uid=#{uid}&pid=#{pid}"
+
+  socket.on "letter", (data)->
+    console.log "New data", data
+
   $(document).on 'click', 'tr.open-row', ->
     $('#' + $(this).attr 'data-letter-id').toggleClass 'hide'
 
@@ -22,6 +27,7 @@ $ ->
 
     $.ajax(
       url: "http://qps.ru/api?url=#{url}&format=text"
+      #dataType: 'jsonp'
       crossDomain: true
       type: 'GET'
       success: (data) ->

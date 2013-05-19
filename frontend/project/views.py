@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import redirect, render_to_response
@@ -95,7 +96,8 @@ def show_project(request, project_id, last_id=None):
         'project': project,
         'letters': letters,
         'has_next': has_next,
-        'last_id': new_last_id
+        'last_id': new_last_id,
+        'rt_port': settings.CONFIG_INI['rt']['port']
     }, context_instance=RequestContext(request))
 
 

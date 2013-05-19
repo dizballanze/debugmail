@@ -6,13 +6,13 @@ debuglevel = 2
 smtp = SMTP()
 smtp.set_debuglevel(debuglevel)
 
-smtp.connect('debugmail.info', 9025)
+smtp.connect('localhost', 9025)
 
 smtp.ehlo()
 smtp.starttls()
 smtp.ehlo()
 
-smtp.login('yuri@wbtech.pro', '40d72d5c19f7f542bfba52fe239e4d05')
+smtp.login('yuri@wbtech.pro', '3dabb1d84a5613f30216d1cf053163fb')
 
 from_addr = "Yuri Shikanov <dizballanze@gmail.com>"
 to_addr = "lion.programmer@gmail.com"
