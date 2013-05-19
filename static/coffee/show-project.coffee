@@ -5,7 +5,7 @@ $ ->
     console.log "New data", data
 
   $(document).on 'click', 'tr.open-row', ->
-    $('#' + $(this).attr 'data-letter-id').slideDown
+    $('#' + $(this).attr 'data-letter-id').slideUp
 
   $('#load-more').click ->
     project_id = $(this).attr('data-project-id')
