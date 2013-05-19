@@ -32,9 +32,10 @@ SESSION_ENGINE = 'mongoengine.django.sessions'
 PROJECT_PASSWORD_SALT = '[jngdng54bngdflb3q[lkk'
 
 config = configparser.ConfigParser()
-config.read('../settings.ini')
 
-connect(config['mongodb']['dbname'])
+CONFING_INI = config.read('../settings.ini')
+
+connect(CONFING_INI['mongodb']['dbname'])
 
 EMAIL_HOST = 'smtp.gmail.com'
 
