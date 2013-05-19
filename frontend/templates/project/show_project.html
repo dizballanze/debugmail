@@ -61,7 +61,7 @@
                 {% if forloop.last %}
                     </table>
                     {% if has_next %}
-                        <a class="btn btn-primary" id="load-more" href="{% url 'show_project_last_id' project.id last_id %}">Load more</a>
+                        <a class="btn btn-primary" id="load-more" href="#" data-project-id="{{ project.id }}">Load more</a>
                     {% endif %}
                 {% endif %}
             {% empty %}

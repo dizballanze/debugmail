@@ -4,9 +4,8 @@ $ ->
 
   $('#load-more').click ->
     that = $(this)
-    console.log $('table tr:last').attr('id')
     $.get(
-      that.attr('href')
+      '/project/' + that.attr('data-project-id') + '/' + $('table tr:last').attr 'id'
       (data) ->
         $('table tbody').prepend(data)
     )
