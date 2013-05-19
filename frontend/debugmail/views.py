@@ -20,7 +20,7 @@ def login_view(request):
             if user.check_password(request.POST['password']):
                 user.backend = 'mongoengine.django.auth.MongoEngineBackend'
                 login(request, user)
-                request.session.set_expiry(60 * 60 * 1) # 1 hour timeout
+                request.session.set_expiry(60 * 60 * 10) # 10 hour timeout
                 return redirect('project_list')
             else:
                 return {
@@ -59,7 +59,7 @@ def user_register(request):
             user = User.create_user(uemail, upassword, request.POST['email'])
             user.backend = 'mongoengine.django.auth.MongoEngineBackend'
             login(request, user)
-            request.session.set_expiry(60 * 60 * 1) # 1 hour timeout
+            request.session.set_expiry(60 * 60 * 10) # 10 hour timeout
             return redirect('project_list')
         except NotUniqueError:
             return {

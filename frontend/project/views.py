@@ -3,9 +3,9 @@ from django.http import Http404
 from django.shortcuts import redirect
 from mongoengine import DoesNotExist, ValidationError
 
-from handy.decorators import render_to
+from handy.decorators import render_to, render_to_json
 from project.models import Project, Letter
-from debugmail.settings import PROJECT_PASSWORD_SALT
+from debugmail.settings import PROJECT_PASSWORD_SALT, LETTERS_BY_PAGE
 
 import hashlib
 
@@ -14,7 +14,7 @@ import hashlib
 @login_required
 def project_list(request):
     return {
-        'projects': Project.objects.filter(user=request.user).order_by('id'),
+        'projects': Project.objects.filter(user=request.user).order_by('-id'),
         'user': request.user
     }
 
@@ -76,8 +76,29 @@ def show_project(request, project_id):
 
     return {
         'project': project,
-        'letters': Letter.objects.filter(project=project).order_by('id')
+        'letters': Letter.objects.filter(project=project).order_by('-id')[:LETTERS_BY_PAGE],
+        'has_next': Letter.objects.filter(project=project).count() > LETTERS_BY_PAGE
     }
+
+
+@render_to_json()
+def get_letters_ajax(request, project_id, page):
+    # try:
+    #     page = int(page)
+    #     project = Project.objects.get(id=project_id)
+    #     return {
+    #         'letters': Letter.objects.filter(project=project).order_by('-id')[:LETTERS_BY_PAGE * page],
+    #         'has_next': Letter.objects.filter(project=project).count() > (LETTERS_BY_PAGE * page)
+    #     }
+    # except DoesNotExist:
+    #     return {}
+    pass
+
+
+# def get_letters(project, page=1):
+#     limit_from = (page - 1) * LETTERS_BY_PAGE
+#     limit_to = page * LETTERS_BY_PAGE
+#     return Letter.objects.filter(project=project).order_by('-id')[limit_from, limit_to]
 
 
 @login_required()

@@ -5,3 +5,5 @@ settings.ini
 static/CACHE/
 static/coffee/*.js
 static/coffee/*.map
+smtpd/*.js
+smtpd/*.map

@@ -7,14 +7,16 @@ from os.path import join
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+LETTERS_BY_PAGE = 2
+
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
 MANAGERS = ADMINS
 
-LOGIN_URL = ''
-LOGOUT_URL = 'user_logout'
+LOGIN_URL = 'login_view'
+LOGOUT_URL = 'logout_view'
 
 DATABASES = {
     'default': {
@@ -30,9 +32,10 @@ SESSION_ENGINE = 'mongoengine.django.sessions'
 PROJECT_PASSWORD_SALT = '[jngdng54bngdflb3q[lkk'
 
 config = configparser.ConfigParser()
-config.read('../settings.ini')
 
-connect(config['mongodb']['dbname'])
+CONFING_INI = config.read('../settings.ini')
+
+connect(CONFING_INI['mongodb']['dbname'])
 
 EMAIL_HOST = 'smtp.gmail.com'
 
