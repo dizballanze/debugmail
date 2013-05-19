@@ -11,7 +11,7 @@ $ ->
         $.get(
           '/has_more_letters/' + project_id + '/' + $('table tr:last').attr 'id'
           (data) ->
-            console.log data
+            console.log data.result
         )
     )
     false
