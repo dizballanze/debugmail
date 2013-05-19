@@ -2,7 +2,7 @@
     <tr class="open-row" data-letter-id="{{ letter.id }}">
         <td>{{ letter.subject }}</td><td>{{ letter.date|naturaltime }}</td>
     </tr>
-    <tr class="info hide" data-letter-subject="{{ letter.subject }}" id="{{ letter.id }}">
+    <tr class="info" style="display: none;" data-letter-subject="{{ letter.subject }}" id="{{ letter.id }}">
         <td colspan="2">
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#info-{{ letter.id }}" data-toggle="tab">Info</a></li>
