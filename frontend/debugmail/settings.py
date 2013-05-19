@@ -33,9 +33,18 @@ PROJECT_PASSWORD_SALT = '[jngdng54bngdflb3q[lkk'
 
 config = configparser.ConfigParser()
 
-CONFING_INI = config.read('../settings.ini')
+config.read('../settings.ini')
 
-connect(CONFING_INI['mongodb']['dbname'])
+CONFIG_INI = {
+    'mongodb': {
+        'dbname': config['mongodb']['dbname']
+    },
+    'rt': {
+        'port': config['rt']['port']
+    }
+}
+
+connect(CONFIG_INI['mongodb']['dbname'])
 
 EMAIL_HOST = 'smtp.gmail.com'
 
