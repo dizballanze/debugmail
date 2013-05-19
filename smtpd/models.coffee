@@ -1,5 +1,6 @@
 Schema = require('mongoose').Schema
 ObjectId = Schema.ObjectId
+Mixed = Schema.Types.Mixed
 
 
 Project = new Schema
@@ -11,13 +12,17 @@ Project = new Schema
 
 Letter = new Schema
   subject: String
-  content_type: String
-  charset: String
+  # content_type: String
+  # charset: String
   content: String
   sender: String
   to: String
   date: Date
   project: ObjectId
+  priority: String
+  html: String
+  plain: String
+  headers: Mixed
 
 
 User = new Schema

@@ -1,3 +1,4 @@
+require 'sugar'
 smtp = require "simplesmtp"
 models = require "./models"
 async = require "async"
@@ -25,20 +26,45 @@ exports.run = (settings)->
 
   server.on 'startData', (req)->
     req.parser = new MailParser
+    req.plain = ''
+    # Save letter
     req.parser.on 'end', (mail)->
+      console.log mail
       headers = mail.headers
+      if 'date' in headers
+        [date, time] = headers.date.split ' '
+        [day, month, year] = date.split '/'
+        [hour, minute] = time.split ':'
+        send_date = Date.create().set
+          day: day
+          month: month
+          year: year
+          hour: hour
+          minute: minute
+      else
+        send_date = new Date
       letter = new Letter
         subject: mail.subject
-        date: new Date(headers.date)
+        date: send_date
         sender: headers.from
         to: headers.to
         content: mail.text
         project: req.project._id
+        priority: mail.priority
+        plain: req.plain
+      letter.html = mail.html if 'html' of mail
+      delete headers.from
+      delete headers.to
+      delete headers.subject if 'subject' of headers
+      delete headers.date if 'date' of headers
+      letter.headers = headers
+      console.log letter
       letter.save()
 
 
   server.on 'data', (req, chunk)->
     req.parser.write chunk
+    req.plain += chunk
     
   server.on 'dataReady', (req, cb)->
     req.parser.end()
@@ -57,7 +83,6 @@ exports.run = (settings)->
             callback null, user
 
       (user, callback)->
-        console.log {user: user._id, password: password}
         Project.findOne {user: user._id, password: password}, (err, project)->
           if err
             callback err
@@ -67,7 +92,6 @@ exports.run = (settings)->
             callback null, user, project
 
     ], (err, user, project)->
-      console.log arguments
       if err
         console.error err
         cb null, false
@@ -76,7 +100,6 @@ exports.run = (settings)->
       req.project = project
       cb null, true
       
-
 
   server.listen 9025
 
