@@ -31,30 +31,28 @@
                     <tr class="info hide" id="{{ letter.id }}">
                         <td colspan="2">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#info" data-toggle="tab">Info</a></li>
-                                <li><a href="#content" data-toggle="tab">Content</a></li>
+                                <li class="active"><a href="#info-{{ letter.id }}" data-toggle="tab">Info</a></li>
+                                <li><a href="#content-{{ letter.id }}" data-toggle="tab">Content</a></li>
+                                <li><a href="#html-{{ letter.id }}" data-toggle="tab">Html</a></li>
+                                <li><a href="#plain-{{ letter.id }}" data-toggle="tab">Plain</a></li>
                             </ul>
                             <div id="myTabContent" class="tab-content">
-                                <div class="tab-pane active in" id="info">
-                                    123
+                                <div class="tab-pane active in" id="info-{{ letter.id }}">
+                                    <strong>Link:</strong> http://debugmail.info{% url 'show_letter' letter.id %}<br>
+                                    <strong>From:</strong> {{ letter.sender }}<br>
+                                    <strong>To:</strong> {{ letter.to }}<br>
+                                    <strong>Headers:</strong> {{ letter.headers|default:"-" }}<br>
                                 </div>
-                                <div class="tab-pane fade" id="content">
-                                    34
+                                <div class="tab-pane fade" id="content-{{ letter.id }}">
+                                    {{ letter.content|default:"-" }}
+                                </div>
+                                <div class="tab-pane fade" id="html-{{ letter.id }}">
+                                    {{ letter.html|default:"-"|safe }}
+                                </div>
+                                <div class="tab-pane fade" id="plain-{{ letter.id }}">
+                                    {{ letter.plain|default:"-" }}
                                 </div>
                             </div>
-                            <strong>Link:</strong> http://debugmail.info{% url 'show_letter' letter.id %}<br>
-                            <strong>From:</strong> {{ letter.sender }}<br>
-                            <strong>To:</strong> {{ letter.to }}<br>
-                            <strong>Headers:</strong> {{ letter.headers|default:"-" }}<br>
-                            <strong>Plain:</strong> {{ letter.plain|default:"-" }}<br>
-                            <strong>Content:</strong>
-                            <p>
-                                {{ letter.content|default:"-" }}
-                            </p>
-                            <strong>Html:</strong>
-                            <p>
-                                {{ letter.html|default:"-"|safe }}
-                            </p>
                         </td>
                     </tr>
                 {% if forloop.last %}
