@@ -9,3 +9,4 @@ $ ->
       (data) ->
         console.log data
     )
+    false
