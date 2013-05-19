@@ -26,6 +26,6 @@ $ ->
       crossDomain: true
       type: 'GET'
       success: (data) ->
-        console.log data
+        $("input[value=#{url}]").val(data)
     )
     false
