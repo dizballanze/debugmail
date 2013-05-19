@@ -63,11 +63,14 @@ exports.run = (settings)->
       letter.headers = headers
       console.log letter, "project-#{req.project.id}"
 
-      channel = store.channel "project-#{req.project.id}"
-      channel.publish "letter", letter
-
       letter_model = new Letter letter
-      letter_model.save()
+      letter_model.save (err)->
+        if err
+          console.error err
+          return
+        channel = store.channel "project-#{req.project.id}"
+        letter.id = letter_model.id
+        channel.publish "letter", letter
 
 
   server.on 'data', (req, chunk)->

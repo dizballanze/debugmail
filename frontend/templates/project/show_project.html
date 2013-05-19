@@ -28,7 +28,7 @@
         <div class="span7 well">
             {% for letter in letters %}
                 {% if forloop.first %}
-                    <table class="table">
+                    <table class="table" id="letters">
                     <thead><tr><th colspan="2"><input placeholder="Search" type="text" id="search-input"></th></tr></thead>
                 {% endif %}
                     <tr class="open-row" data-letter-id="{{ letter.id }}">
