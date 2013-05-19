@@ -25,9 +25,11 @@ exports.run = (settings)->
   io.sockets.on 'connection', (socket)->
     uid = socket.handshake.query.uid
     pid = socket.handshake.query.pid
+
     channel = mubsub_client.channel "project-#{pid}"
     channel.subscribe (letter)->
       socket.emit 'letter', letter
+
     console.log "user #{uid} connected to project #{pid}"
 
 
