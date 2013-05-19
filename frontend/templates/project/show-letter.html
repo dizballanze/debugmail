@@ -6,7 +6,7 @@
         <div class="span7 well">
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#info" data-toggle="tab">Info</a></li>
-                <li><a href="#content" data-toggle="tab">Text</a></li>
+                <li><a href="#text" data-toggle="tab">Text</a></li>
                 <li {% if not letter.html %}class="disabled"{% endif %}>
                     <a href="#{% if letter.html %}html{% endif %}" data-toggle="tab">Html</a>
                 </li>
@@ -22,7 +22,7 @@
                         <strong>{{ key }}:</strong>{{ value }}<br>
                     {% endfor %}
                 </div>
-                <div class="tab-pane fade" id="content">
+                <div class="tab-pane fade" id="text">
                     {{ letter.content|default:"-"|linebreaks }}
                 </div>
                 <div class="tab-pane fade" id="html">
