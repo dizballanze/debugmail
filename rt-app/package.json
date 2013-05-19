@@ -1,0 +1,20 @@
+{
+  "name": "rt-app",
+  "version": "0.0.1",
+  "description": "RT mails ",
+  "main": "bin/app",
+  "dependencies": {
+    "socket.io": "0.9.13",
+    "socket.io-mongo": "git://github.com/inspiredjw/socket.io-mongo.git",
+    "coffee-script": "~1.6.2",
+    "express": "~3.2.4",
+    "mubsub": "~1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "",
+  "license": "MIT"
+}

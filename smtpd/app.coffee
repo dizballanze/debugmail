@@ -6,10 +6,13 @@ MailParser = require("mailparser").MailParser
 ProjectModel = models.Project
 LetterModel = models.Letter
 UserModel = models.User
+mubsub = require 'mubsub'
 
 
 exports.run = (settings)->
   # Create model instances
+  store = mubsub settings.mongodb.url
+  
   db = settings.getConnection()
   Project = ProjectModel db
   Letter = LetterModel db
@@ -43,7 +46,7 @@ exports.run = (settings)->
           minute: minute
       else
         send_date = new Date
-      letter = new Letter
+      letter =
         subject: mail.subject
         date: send_date
         sender: headers.from
@@ -58,8 +61,13 @@ exports.run = (settings)->
       delete headers.subject if 'subject' of headers
       delete headers.date if 'date' of headers
       letter.headers = headers
-      console.log letter
-      letter.save()
+      console.log letter, "project-#{req.project.id}"
+
+      channel = store.channel "project-#{req.project.id}"
+      channel.publish "letter", letter
+
+      letter_model = new Letter letter
+      letter_model.save()
 
 
   server.on 'data', (req, chunk)->

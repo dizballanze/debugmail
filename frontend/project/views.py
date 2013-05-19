@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import redirect
@@ -77,7 +78,8 @@ def show_project(request, project_id):
     return {
         'project': project,
         'letters': Letter.objects.filter(project=project).order_by('-id')[:LETTERS_BY_PAGE],
-        'has_next': Letter.objects.filter(project=project).count() > LETTERS_BY_PAGE
+        'has_next': Letter.objects.filter(project=project).count() > LETTERS_BY_PAGE,
+        'rt_port': settings.CONFIG_INI['rt']['port']
     }
 
 

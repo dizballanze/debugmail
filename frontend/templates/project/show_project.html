@@ -1,6 +1,12 @@
 {% extends 'base.html' %}{% load humanize %}
 
 {% block extrajs %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/socket.io.js"></script>
+    <script type="text/coffeescript">
+        window.port = '{{ rt_port }}'
+        window.uid = '{{ user.id }}'
+        window.pid = '{{ project.id }}'
+    </script>
     <script type="text/coffeescript" src="/static/coffee/show-project.coffee"></script>
 {% endblock %}
 
