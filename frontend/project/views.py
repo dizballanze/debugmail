@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render_to_response
+from django.template import RequestContext
 from mongoengine import DoesNotExist, ValidationError
 
 from handy.decorators import render_to, render_to_json
@@ -64,7 +65,6 @@ def project_process(request, project, is_update):
         }
 
 
-@render_to('project/show_project.html')
 @login_required()
 def show_project(request, project_id, last_id=None):
     try:
@@ -86,12 +86,17 @@ def show_project(request, project_id, last_id=None):
         has_next = False
         new_last_id = 0
 
-    return {
+    if request.is_ajax():
+        template_name = 'project/ajax-show-project.html'
+    else:
+        template_name = 'project/show_project.html'
+
+    return render_to_response(template_name, {
         'project': project,
         'letters': letters,
         'has_next': has_next,
         'last_id': new_last_id
-    }
+    }, context_instance=RequestContext(request))
 
 
 @render_to_json()
