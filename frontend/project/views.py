@@ -99,24 +99,15 @@ def show_project(request, project_id, last_id=None):
     }, context_instance=RequestContext(request))
 
 
-@render_to_json()
-def get_letters_ajax(request, project_id, page):
-    # try:
-    #     page = int(page)
-    #     project = Project.objects.get(id=project_id)
-    #     return {
-    #         'letters': Letter.objects.filter(project=project).order_by('-id')[:LETTERS_BY_PAGE * page],
-    #         'has_next': Letter.objects.filter(project=project).count() > (LETTERS_BY_PAGE * page)
-    #     }
-    # except DoesNotExist:
-    #     return {}
-    pass
-
-
-# def get_letters(project, page=1):
-#     limit_from = (page - 1) * LETTERS_BY_PAGE
-#     limit_to = page * LETTERS_BY_PAGE
-#     return Letter.objects.filter(project=project).order_by('-id')[limit_from, limit_to]
+@login_required()
+def has_more_letters(request, project_id, last_id):
+    try:
+        project = Project.objects.get(id=project_id)
+    except DoesNotExist:
+        return False
+    if project.user != request.user:
+        return False
+    return bool(Letter.objects.filter(project=project, id__lt=last_id).count())
 
 
 @login_required()

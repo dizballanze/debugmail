@@ -3,10 +3,16 @@ $ ->
     $('#' + $(this).attr 'data-letter-id').toggleClass 'hide'
 
   $('#load-more').click ->
-    that = $(this)
+    project_id = $(this).attr('data-project-id')
+    last_letter_id = $('table tr:last').attr 'id'
     $.get(
-      '/project/' + that.attr('data-project-id') + '/' + $('table tr:last').attr 'id'
+      '/project/' + project_id + '/' + last_letter_id
       (data) ->
         $('table tbody').append(data)
+        $.get(
+          '/has_more_letters/' + project_id + '/' + last_letter_id
+          (data) ->
+            console.log data
+        )
     )
     false
