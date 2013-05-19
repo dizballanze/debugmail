@@ -32,7 +32,7 @@
                         <td colspan="2">
                             <ul class="nav nav-tabs">
                                 <li class="active"><a href="#info-{{ letter.id }}" data-toggle="tab">Info</a></li>
-                                <li><a href="#content-{{ letter.id }}" data-toggle="tab">Content</a></li>
+                                <li><a href="#content-{{ letter.id }}" data-toggle="tab">Text</a></li>
                                 <li><a href="#html-{{ letter.id }}" data-toggle="tab">Html</a></li>
                                 <li><a href="#plain-{{ letter.id }}" data-toggle="tab">Plain</a></li>
                             </ul>
@@ -44,13 +44,13 @@
                                     <strong>Headers:</strong> {{ letter.headers|default:"-" }}<br>
                                 </div>
                                 <div class="tab-pane fade" id="content-{{ letter.id }}">
-                                    {{ letter.content|default:"-" }}
+                                    {{ letter.content|default:"-"|linebreaks }}
                                 </div>
                                 <div class="tab-pane fade" id="html-{{ letter.id }}">
                                     {{ letter.html|default:"-"|safe }}
                                 </div>
                                 <div class="tab-pane fade" id="plain-{{ letter.id }}">
-                                    {{ letter.plain|default:"-" }}
+                                    {{ letter.plain|default:"-"|linebreaks }}
                                 </div>
                             </div>
                         </td>
