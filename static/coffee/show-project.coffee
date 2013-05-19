@@ -7,6 +7,6 @@ $ ->
     $.get(
       that.attr('href')
       (data) ->
-        console.log data
+        $('table').append(data)
     )
     false
