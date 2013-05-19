@@ -4,25 +4,35 @@
     <div class="offset1">
         <h2>Show letter</h2>
         <div class="span4 well">
-            <table class="table">
-                <tr><td><strong>Subject:</strong></td> <td>{{ letter.subject }}</td></tr>
-                <tr><td><strong>From:</strong></td> <td>{{ letter.sender }}</td></tr>
-                <tr><td><strong>To:</strong></td> <td>{{ letter.sender }}</td></tr>
-                <tr><td><strong>Date:</strong></td> <td>{{ letter.date|naturaltime }}</td></tr>
-                <tr><td><strong>Headers:</strong></td> <td>{{ letter.headers|default:"-" }}</td></tr>
-                <tr><td><strong>Plain:</strong></td> <td>{{ letter.plain|default:"-" }}</td></tr>
-            </table>
-        </div>
-        <div class="span6 well">
-            <strong>Content:</strong>
-            <p>
-                {{ letter.content|default:"-" }}
-            </p>
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#info" data-toggle="tab">Info</a></li>
+                <li><a href="#content" data-toggle="tab">Text</a></li>
+                <li {% if not letter.html %}class="disabled"{% endif %}>
+                    <a href="#{% if letter.html %}html{% endif %}" data-toggle="tab">Html</a>
+                </li>
+                <li><a href="#plain" data-toggle="tab">Plain</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active in" id="info">
+                    <strong>Subject:</strong> {{ letter.subject }}<br>
+                    <strong>From:</strong> {{ letter.sender }}<br>
+                    <strong>To:</strong> {{ letter.to }}<br>
 
-            <strong>Html:</strong>
-            <p>
-                {{ letter.html|default:"-" }}
-            </p>
+                    {% for key,value in letter.headers.iteritems %}
+                        <strong>{{ key }}:</strong>{{ value }}<br>
+                    {% endfor %}
+                </div>
+                <div class="tab-pane fade" id="content">
+                    {{ letter.content|default:"-"|linebreaks }}
+                </div>
+                <div class="tab-pane fade" id="html">
+                    {{ letter.html|default:"-"|safe }}
+                </div>
+                <div class="tab-pane fade" id="plain">
+                    {{ letter.plain|default:"-"|linebreaks }}
+                </div>
+            </div>
+
         </div>
     </div>
 {% endblock %}
