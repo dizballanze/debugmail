@@ -1,5 +1,5 @@
 import datetime
-from mongoengine import Document, ReferenceField, StringField, DateTimeField, CASCADE
+from mongoengine import Document, ReferenceField, StringField, DateTimeField, CASCADE, DictField
 from mongoengine.django.auth import User
 
 
@@ -12,8 +12,10 @@ class Project(Document):
 
 class Letter(Document):
     subject = StringField(max_length=255, required=True)
-    content_type = StringField(max_length=50, required=True)
-    charset = StringField(max_length=30, required=True)
+    headers = DictField()
+    priority = StringField()
+    html = StringField()
+    plain = StringField()
     content = StringField()
     sender = StringField(max_length=255, required=True)
     to = StringField(max_length=255, required=True)

@@ -1,4 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}{% load humanize %}
+
+{% block extrajs %}
+    <script type="text/coffeescript" src="/static/coffee/show-project.coffee"></script>
+{% endblock %}
 
 {% block content %}
     <div class="offset1">
@@ -17,9 +21,31 @@
         </div>
         <div class="span7 well">
             {% for letter in letters %}
-                {% if forloop.first %}<ul>{% endif %}
-                    <li><a href="{% url 'show_letter' letter.id %}">{{ letter.subject }}</a></li>
-                {% if forloop.last %}</ul>{% endif %}
+                {% if forloop.first %}
+                    <table class="table">
+                    <thead><tr><th>Subject</th><th>Date</th></tr></thead>
+                {% endif %}
+                    <tr class="open-row" data-letter-id="{{ letter.id }}">
+                        <td>{{ letter.subject }}</td><td>{{ letter.date|naturaltime }}</td>
+                    </tr>
+                    <tr class="info hide" id="{{ letter.id }}">
+                        <td colspan="2">
+                            <strong>Link:</strong> http://debugmail.info{% url 'show_letter' letter.id %}<br>
+                            <strong>From:</strong> {{ letter.sender }}<br>
+                            <strong>To:</strong> {{ letter.to }}<br>
+                            <strong>Headers:</strong> {{ letter.headers|default:"-" }}<br>
+                            <strong>Plain:</strong> {{ letter.plain|default:"-" }}<br>
+                            <strong>Content:</strong>
+                            <p>
+                                {{ letter.content|default:"-" }}
+                            </p>
+                            <strong>Html:</strong>
+                            <p>
+                                {{ letter.html|default:"-"|safe }}
+                            </p>
+                        </td>
+                    </tr>
+                {% if forloop.last %}</table>{% endif %}
             {% empty %}
                 No letters
             {% endfor %}

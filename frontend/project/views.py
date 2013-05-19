@@ -93,13 +93,10 @@ def remove_project(request, project_id):
 
 
 @render_to('project/show-letter.html')
-@login_required()
 def show_letter(request, letter_id):
     try:
         letter = Letter.objects.get(id=letter_id)
     except DoesNotExist:
-        return Http404()
-    if letter.project.user != request.user:
         return Http404()
     return {
         'letter': letter
