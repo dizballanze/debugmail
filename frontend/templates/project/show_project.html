@@ -33,7 +33,7 @@
                             <ul class="nav nav-tabs">
                                 <li class="active"><a href="#info-{{ letter.id }}" data-toggle="tab">Info</a></li>
                                 <li><a href="#content-{{ letter.id }}" data-toggle="tab">Text</a></li>
-                                <li><a href="#html-{{ letter.id }}" data-toggle="tab">Html</a></li>
+                                <li {% if not letter.html %}class="disabled"{% endif %}><a href="#html-{{ letter.id }}" data-toggle="tab">Html</a></li>
                                 <li><a href="#plain-{{ letter.id }}" data-toggle="tab">Plain</a></li>
                             </ul>
                             <div class="tab-content">
@@ -41,7 +41,12 @@
                                     <strong>Link:</strong> http://debugmail.info{% url 'show_letter' letter.id %}<br>
                                     <strong>From:</strong> {{ letter.sender }}<br>
                                     <strong>To:</strong> {{ letter.to }}<br>
-                                    <strong>Headers:</strong> {{ letter.headers|default:"-" }}<br>
+
+                                    {% for key,value in headers %}
+                                        <strong>{{ key }}:</strong>{{ value }}<br>
+                                    {% endfor %}
+
+                                    {{ letter.headers|default:"-" }}<br>
                                 </div>
                                 <div class="tab-pane fade" id="content-{{ letter.id }}">
                                     {{ letter.content|default:"-"|linebreaks }}
