@@ -1,5 +1,5 @@
 $ ->
-  $('.open-row').click ->
+  $('.open-row').live ->
     $('#' + $(this).attr 'data-letter-id').toggleClass 'hide'
 
   $('#load-more').click ->
