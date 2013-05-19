@@ -108,7 +108,7 @@ def has_more_letters(request, project_id, last_id):
         return {'result': False}
     if project.user != request.user:
         return {'result': False}
-    return {'result': bool(Letter.objects.filter(project=project, id__lt=last_id).count())}
+    return {'result': Letter.objects.filter(project=project, id__lt=last_id).count()}
 
 
 @login_required()
