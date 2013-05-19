@@ -9,3 +9,7 @@ textarea {
 .open-row {
     cursor: pointer;
 }
+
+.open-row:hover {
+    background-color: #eeeeee;
+}
