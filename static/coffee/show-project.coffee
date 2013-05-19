@@ -1,6 +1,6 @@
 get_letter = (letter)->
-  letter.plain = letter.plain.replce("\r", "<br>").replace("\r\n", "<br>").replace "\n", "<br>"
-  letter.content = letter.content.replace "\n", "<br>"
+  letter.plain = letter.plain.replace /\n/g, '<br>'
+  letter.content = letter.content.replace /\n/g, '<br>'
   console.log letter
   html_class = if letter.html? then '' else 'disabled'
   headers = ''
