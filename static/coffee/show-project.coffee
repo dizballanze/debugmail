@@ -1,7 +1,4 @@
 $ ->
-  $('.open-row').click ->
-    $('#' + $(this).attr 'data-letter-id').toggleClass 'hide'
-
   socket = io.connect location.hostname + ':' + port + "/?uid=#{uid}&pid=#{pid}"
 
   socket.on "letter", (data)->
@@ -30,6 +27,7 @@ $ ->
 
     $.ajax(
       url: "http://qps.ru/api?url=#{url}&format=text"
+      #dataType: 'jsonp'
       crossDomain: true
       type: 'GET'
       success: (data) ->
