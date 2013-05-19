@@ -4,13 +4,12 @@ $ ->
 
   $('#load-more').click ->
     project_id = $(this).attr('data-project-id')
-    last_letter_id = $('table tr:last').attr 'id'
     $.get(
-      '/project/' + project_id + '/' + last_letter_id
+      '/project/' + project_id + '/' + $('table tr:last').attr 'id'
       (data) ->
         $('table tbody').append(data)
         $.get(
-          '/has_more_letters/' + project_id + '/' + last_letter_id
+          '/has_more_letters/' + project_id + '/' + $('table tr:last').attr 'id'
           (data) ->
             console.log data
         )
