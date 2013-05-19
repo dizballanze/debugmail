@@ -23,3 +23,4 @@ $ ->
       "http://qps.ru/api?url=#{url}&format=text"
       (data) ->
         console.log data
+    false
