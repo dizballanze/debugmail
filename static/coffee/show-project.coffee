@@ -12,8 +12,7 @@ $ ->
           '/has_more_letters/' + project_id + '/' + $('table tr:last').attr 'id'
           (data) ->
             data = JSON.parse data
-            console.log data
-            console.log data.result
+            $('#load-more').addClass('hide') unless data.result
         )
     )
     false
