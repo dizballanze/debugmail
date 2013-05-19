@@ -20,7 +20,7 @@ $ ->
   $(document).on 'click', 'a.get-short-link', ->
     url = $(this).attr 'href'
     $.get ->
-      "http://qps.ru/api?url=#{url}&format=text"
+      'http://qps.ru/api?url=' + url + '&format=text'
       (data) ->
         console.log data
     false
