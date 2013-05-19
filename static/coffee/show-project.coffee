@@ -19,6 +19,7 @@ $ ->
 
   $(document).on 'click', 'a.get-short-link', ->
     url = $(this).attr 'href'
+    console.log(url)
     $.ajax ->
       url: 'http://qps.ru/api?url=' + url + '&format=text'
       dataType: 'jsonp'
