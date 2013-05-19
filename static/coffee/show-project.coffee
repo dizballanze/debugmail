@@ -4,9 +4,10 @@ $ ->
 
   $('#load-more').click ->
     that = $(this)
+    console.log $('table tr:last')
     $.get(
       that.attr('href')
       (data) ->
-        $('table').append(data)
+        $('table tbody').prepend(data)
     )
     false
