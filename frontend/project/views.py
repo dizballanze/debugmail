@@ -66,7 +66,7 @@ def project_process(request, project, is_update):
 
 @render_to('project/show_project.html')
 @login_required()
-def show_project(request, project_id):
+def show_project(request, project_id, last_id=None):
     try:
         project = Project.objects.get(id=project_id)
     except DoesNotExist:
@@ -74,10 +74,20 @@ def show_project(request, project_id):
     if project.user != request.user:
         return Http404()
 
+    if last_id:
+        letters = Letter.objects.filter(project=project, id__lt=last_id).order_by('-id')[:LETTERS_BY_PAGE]
+    else:
+        letters = Letter.objects.filter(project=project).order_by('-id')[:LETTERS_BY_PAGE]
+
+    if len(letters):
+        has_next = bool(Letter.objects.filter(project=project, id__lt=letters[-1].id).count())
+    else:
+        has_next = bool(Letter.objects.filter(project=project).count() > LETTERS_BY_PAGE)
+
     return {
         'project': project,
-        'letters': Letter.objects.filter(project=project).order_by('-id')[:LETTERS_BY_PAGE],
-        'has_next': Letter.objects.filter(project=project).count() > LETTERS_BY_PAGE
+        'letters': letters,
+        'has_next': has_next
     }
 
 
