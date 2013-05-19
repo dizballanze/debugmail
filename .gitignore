@@ -7,3 +7,5 @@ static/coffee/*.js
 static/coffee/*.map
 smtpd/*.js
 smtpd/*.map
+rt-app/*.js
+rt-app/*.map

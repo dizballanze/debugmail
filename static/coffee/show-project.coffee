@@ -27,10 +27,14 @@ $ ->
 
     $.ajax(
       url: "http://qps.ru/api?url=#{url}&format=text"
-      #dataType: 'jsonp'
       crossDomain: true
       type: 'GET'
       success: (data) ->
         $("input[value='#{url}']").val(data)
     )
     false
+
+  $('#search-input').keyup ->
+    query = $(this).val()
+    $('table tr.info').addClass 'hide'
+    $("table tr.info[data-letter-subject*='#{query}']").removeClass 'hide'
