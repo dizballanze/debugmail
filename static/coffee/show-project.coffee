@@ -5,7 +5,7 @@ $ ->
     console.log "New data", data
 
   $(document).on 'click', 'tr.open-row', ->
-    $('#' + $(this).attr 'data-letter-id').toggleClass 'hide'
+    $('#' + $(this).attr 'data-letter-id').slideToggle 'slow'
 
   $('#load-more').click ->
     project_id = $(this).attr('data-project-id')
