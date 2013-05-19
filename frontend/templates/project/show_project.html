@@ -33,7 +33,7 @@
                             <ul class="nav nav-tabs">
                                 <li class="active"><a href="#info-{{ letter.id }}" data-toggle="tab">Info</a></li>
                                 <li><a href="#content-{{ letter.id }}" data-toggle="tab">Text</a></li>
-                                <li {% if not letter.html %}class="disabled"{% endif %}><a href="#html-{{ letter.id }}" data-toggle="tab">Html</a></li>
+                                <li {% if not letter.html %}class="disabled"{% endif %}><a href="#{% if letter.html %}html-{{ letter.id }}{% endif %}" data-toggle="tab">Html</a></li>
                                 <li><a href="#plain-{{ letter.id }}" data-toggle="tab">Plain</a></li>
                             </ul>
                             <div class="tab-content">
