@@ -7,6 +7,6 @@ $ ->
     $.get(
       '/project/' + that.attr('data-project-id') + '/' + $('table tr:last').attr 'id'
       (data) ->
-        $('table tbody').prepend(data)
+        $('table tbody').append(data)
     )
     false
