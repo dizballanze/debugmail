@@ -42,7 +42,7 @@
                                     <strong>From:</strong> {{ letter.sender }}<br>
                                     <strong>To:</strong> {{ letter.to }}<br>
 
-                                    {% for value in letter.headers %}
+                                    {% for value in letter.headers.iteritems %}
                                         {{ value }}<br>
                                     {% endfor %}
                                 </div>
