@@ -4,7 +4,7 @@ $ ->
 
   $('#load-more').click ->
     that = $(this)
-    console.log $('table tr:last')
+    console.log $('table tr:last').attr('id')
     $.get(
       that.attr('href')
       (data) ->
