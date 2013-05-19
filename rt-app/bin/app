@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+require("coffee-script");
+settings = require("../../settings.coffee");
+app = require("../app");
+app.run(settings);
