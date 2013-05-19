@@ -1,7 +1,8 @@
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render_to_response
+from django.template import RequestContext
 from mongoengine import DoesNotExist, ValidationError
 
 from handy.decorators import render_to, render_to_json
@@ -65,9 +66,8 @@ def project_process(request, project, is_update):
         }
 
 
-@render_to('project/show_project.html')
 @login_required()
-def show_project(request, project_id):
+def show_project(request, project_id, last_id=None):
     try:
         project = Project.objects.get(id=project_id)
     except DoesNotExist:
@@ -75,32 +75,42 @@ def show_project(request, project_id):
     if project.user != request.user:
         return Http404()
 
-    return {
+    if last_id:
+        letters = Letter.objects.filter(project=project, id__lt=last_id).order_by('-id')[:LETTERS_BY_PAGE]
+    else:
+        letters = Letter.objects.filter(project=project).order_by('-id')[:LETTERS_BY_PAGE]
+
+    if len(letters):
+        has_next = bool(Letter.objects.filter(project=project, id__lt=letters[len(letters)-1].id).count())
+        new_last_id = letters[len(letters)-1].id
+    else:
+        has_next = False
+        new_last_id = 0
+
+    if request.is_ajax():
+        template_name = 'project/ajax-show-project.html'
+    else:
+        template_name = 'project/show_project.html'
+
+    return render_to_response(template_name, {
         'project': project,
-        'letters': Letter.objects.filter(project=project).order_by('-id')[:LETTERS_BY_PAGE],
-        'has_next': Letter.objects.filter(project=project).count() > LETTERS_BY_PAGE,
+        'letters': letters,
+        'has_next': has_next,
+        'last_id': new_last_id,
         'rt_port': settings.CONFIG_INI['rt']['port']
-    }
+    }, context_instance=RequestContext(request))
 
 
+@login_required()
 @render_to_json()
-def get_letters_ajax(request, project_id, page):
-    # try:
-    #     page = int(page)
-    #     project = Project.objects.get(id=project_id)
-    #     return {
-    #         'letters': Letter.objects.filter(project=project).order_by('-id')[:LETTERS_BY_PAGE * page],
-    #         'has_next': Letter.objects.filter(project=project).count() > (LETTERS_BY_PAGE * page)
-    #     }
-    # except DoesNotExist:
-    #     return {}
-    pass
-
-
-# def get_letters(project, page=1):
-#     limit_from = (page - 1) * LETTERS_BY_PAGE
-#     limit_to = page * LETTERS_BY_PAGE
-#     return Letter.objects.filter(project=project).order_by('-id')[limit_from, limit_to]
+def has_more_letters(request, project_id, last_id):
+    try:
+        project = Project.objects.get(id=project_id)
+    except DoesNotExist:
+        return {'result': False}
+    if project.user != request.user:
+        return {'result': False}
+    return {'result': bool(Letter.objects.filter(project=project, id__lt=last_id).count())}
 
 
 @login_required()
