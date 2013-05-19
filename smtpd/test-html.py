@@ -43,13 +43,13 @@ msg.attach(part2)
 # Send the message via local SMTP server.
 smtp = smtplib.SMTP()
 
-smtp.connect('localhost', 9025)
+smtp.connect('debugmail.info', 9025)
 
 smtp.ehlo()
 smtp.starttls()
 smtp.ehlo()
 
-smtp.login('yuri@wbtech.pro', '3dabb1d84a5613f30216d1cf053163fb')
+smtp.login('yuri@wbtech.pro', '40d72d5c19f7f542bfba52fe239e4d05')
 
 # sendmail function takes 3 arguments: sender's address, recipient's address
 # and message to send - here it is sent as one string.

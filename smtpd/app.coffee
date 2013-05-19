@@ -26,6 +26,7 @@ exports.run = (settings)->
 
   server.on 'startData', (req)->
     req.parser = new MailParser
+    req.plain = ''
     # Save letter
     req.parser.on 'end', (mail)->
       console.log mail
@@ -50,6 +51,7 @@ exports.run = (settings)->
         content: mail.text
         project: req.project._id
         priority: mail.priority
+        plain: req.plain
       letter.html = mail.html if 'html' of mail
       delete headers.from
       delete headers.to
@@ -62,6 +64,7 @@ exports.run = (settings)->
 
   server.on 'data', (req, chunk)->
     req.parser.write chunk
+    req.plain += chunk
     
   server.on 'dataReady', (req, cb)->
     req.parser.end()
