@@ -100,14 +100,15 @@ def show_project(request, project_id, last_id=None):
 
 
 @login_required()
+@render_to_json()
 def has_more_letters(request, project_id, last_id):
     try:
         project = Project.objects.get(id=project_id)
     except DoesNotExist:
-        return False
+        return {'result': False}
     if project.user != request.user:
-        return False
-    return bool(Letter.objects.filter(project=project, id__lt=last_id).count())
+        return {'result': False}
+    return {'result': bool(Letter.objects.filter(project=project, id__lt=last_id).count())}
 
 
 @login_required()
