@@ -5,11 +5,11 @@ $ ->
   $('#load-more').click ->
     project_id = $(this).attr('data-project-id')
     $.get(
-      '/project/#{project_id}/' + $('table tr:last').attr 'id'
+      "/project/#{project_id}/" + $('table tr:last').attr 'id'
       (data) ->
         $('table tbody').append(data)
         $.get(
-          '/has_more_letters/#{project_id}/' + $('table tr:last').attr 'id'
+          "/has_more_letters/#{project_id}/" + $('table tr:last').attr 'id'
           (data) ->
             data = JSON.parse data
             $('#load-more').addClass('hide') unless data.result
@@ -20,6 +20,6 @@ $ ->
   $(document).on 'click', 'a.get-short-link', ->
     url = $(this).attr 'href'
     $.get ->
-      'http://qps.ru/api?url=#{url}&format=text'
+      "http://qps.ru/api?url=#{url}&format=text"
       (data) ->
         console.log data
