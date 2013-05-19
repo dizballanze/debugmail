@@ -21,9 +21,9 @@ $ ->
     url = $(this).attr 'href'
     $.ajax ->
       url: 'http://qps.ru/api?url=' + url + '&format=text'
-      settings:
-        crossDomain: true
-        type: 'GET'
+      
+      crossDomain: true
+      type: 'GET'
         success: (data) ->
           console.log data
     false
