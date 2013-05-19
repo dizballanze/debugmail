@@ -80,7 +80,7 @@ def show_project(request, project_id, last_id=None):
         letters = Letter.objects.filter(project=project).order_by('-id')[:LETTERS_BY_PAGE]
 
     if len(letters):
-        has_next = bool(Letter.objects.filter(project=project, id__lt=letters[-1].id).count())
+        has_next = bool(Letter.objects.filter(project=project, id__lt=letters[len(letters)-1].id).count())
     else:
         has_next = bool(Letter.objects.filter(project=project).count() > LETTERS_BY_PAGE)
 
