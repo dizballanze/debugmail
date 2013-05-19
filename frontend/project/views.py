@@ -81,13 +81,16 @@ def show_project(request, project_id, last_id=None):
 
     if len(letters):
         has_next = bool(Letter.objects.filter(project=project, id__lt=letters[len(letters)-1].id).count())
+        new_last_id = letters[len(letters)-1].id
     else:
-        has_next = bool(Letter.objects.filter(project=project).count() > LETTERS_BY_PAGE)
+        has_next = False
+        new_last_id = 0
 
     return {
         'project': project,
         'letters': letters,
-        'has_next': has_next
+        'has_next': has_next,
+        'last_id': new_last_id
     }
 
 
