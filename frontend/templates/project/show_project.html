@@ -43,7 +43,7 @@
                                     <strong>To:</strong> {{ letter.to }}<br>
 
                                     {% for key,value in headers %}
-                                        <strong>{{ key }}:</strong>{{ value }}<br>
+                                        <strong>{{ key }}:</strong>{{ value }}{{ value }}<br>
                                     {% endfor %}
 
                                     {{ letter.headers|default:"-" }}<br>
