@@ -15,8 +15,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-LOGIN_URL = ''
-LOGOUT_URL = 'user_logout'
+LOGIN_URL = 'login_view'
+LOGOUT_URL = 'logout_view'
 
 DATABASES = {
     'default': {
