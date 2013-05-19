@@ -7,7 +7,7 @@ from os.path import join
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-LETTERS_BY_PAGE = 2
+LETTERS_BY_PAGE = 10
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),

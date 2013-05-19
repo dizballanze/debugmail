@@ -1,5 +1,5 @@
 {% extends 'base.html' %}{% load humanize %}
-
+{% block title %}Project: {{ project.title }}{% endblock %}
 {% block extrajs %}
     <script type="text/coffeescript" src="/static/coffee/show-project.coffee"></script>
 {% endblock %}
