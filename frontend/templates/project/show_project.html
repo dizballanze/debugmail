@@ -30,6 +30,18 @@
                     </tr>
                     <tr class="info hide" id="{{ letter.id }}">
                         <td colspan="2">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#info" data-toggle="tab">Info</a></li>
+                                <li><a href="#content" data-toggle="tab">Content</a></li>
+                            </ul>
+                            <div id="myTabContent" class="tab-content">
+                                <div class="tab-pane active in" id="info">
+                                    123
+                                </div>
+                                <div class="tab-pane fade" id="content">
+                                    34
+                                </div>
+                            </div>
                             <strong>Link:</strong> http://debugmail.info{% url 'show_letter' letter.id %}<br>
                             <strong>From:</strong> {{ letter.sender }}<br>
                             <strong>To:</strong> {{ letter.to }}<br>
@@ -45,7 +57,12 @@
                             </p>
                         </td>
                     </tr>
-                {% if forloop.last %}</table>{% endif %}
+                {% if forloop.last %}
+                    </table>
+                    {% if has_next %}
+                        <a class="btn btn-primary" id="load-more" href="{% url 'get_letters_ajax' letter.id page %}">Load more</a>
+                    {% endif %}
+                {% endif %}
             {% empty %}
                 No letters
             {% endfor %}
