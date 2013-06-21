@@ -25,7 +25,7 @@ exports.run = (settings)->
     maxSize: 5 * 1024
     requireAuthentication: true
     disableDNSValidation: true
-    authMethods: ['LOGIN', 'PLAIN', 'SMTP AUTH']
+    authMethods: ['LOGIN', 'PLAIN', 'AUTH']
 
   server.on 'startData', (req)->
     req.parser = new MailParser
