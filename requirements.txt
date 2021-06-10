@@ -1,4 +1,4 @@
-Django==1.5.1
+Django==2.2.24
 argparse==1.2.1
 configparser==3.3.0r2
 django-appconf==0.6
